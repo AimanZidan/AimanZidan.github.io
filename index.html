@@ -11,7 +11,7 @@
   </head>
   <body>
 <div class="pure-menu pure-menu-horizontal">
-    <a href="#" class="pure-menu-heading">Your Logo</a>
+    <a href="#" class="pure-menu-heading">Your Logo 2</a>
     <ul class="pure-menu-list">
         <li class="pure-menu-item"><a href="#" class="pure-menu-link">Home</a></li>
         <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Pricing</a></li>
@@ -145,38 +145,35 @@
     </p>
 </div>
 <script src="js/scripts.js"></script>
-<script>
-  (function(apiKey){
-    (function(p,e,n,d,o){var v,w,x,y,z;o=p[d]=p[d]||{};o._q=[];
-      v=['initialize','identify','updateOptions','pageLoad'];for(w=0,x=v.length;w<x;++w)(function(m){
-      o[m]=o[m]||function(){o._q[m===v[0]?'unshift':'push']([m].concat([].slice.call(arguments,0)));};})(v[w]);
-      y=e.createElement(n);y.async=!0;y.src='https://pendo-dev-static.storage.googleapis.com/agent/static/'+apiKey+'/pendo.js';
-      z=e.getElementsByTagName(n)[0];z.parentNode.insertBefore(y,z);})(window,document,'script','pendo');
-
-    // Call this whenever information about your visitors becomes available
-    // Please use Strings, Numbers, or Bools for value types.
-    pendo.initialize({
-      visitor: {
-        id:              'VISITOR-UNIQUE-ID'   // Required if user is logged in
-        // email:        // Optional
-        // role:         // Optional
-
-        // You can add any additional visitor level key-values here,
-        // as long as it's not one of the above reserved names.
-      },
-
-      account: {
-        id:           'ACCOUNT-UNIQUE-ID' // Highly recommended
-        // name:         // Optional
-        // planLevel:    // Optional
-        // planPrice:    // Optional
-        // creationDate: // Optional
-
-        // You can add any additional account level key-values here,
-        // as long as it's not one of the above reserved names.
-      }
-    });
-  })('0b9a9eed-bf72-48cc-421f-99f5ebadc51e');
-</script>
+	  <script>
+            const config = (window.location.search || '')
+                .slice(1)
+                .split('&')
+                .map(kv => kv.split('='))
+                .filter(([key, value]) => !!key && !!value)
+                .reduce((memo, [key, value]) => ({...memo, [key]: value}), {
+                    user: 'test@test.com',
+                    account: 'test'
+                });
+            (function(apiKey) {
+                (function(p,e,n,d,o) {
+                    var v,w,x,y,z; o=p[d]=p[d]||{}; o._q=[];
+                    v=['initialize','identify','updateOptions','pageLoad']; for(w=0,x=v.length;w<x;++w)(function(m) {
+                        o[m]=o[m]||function() {o._q[m===v[0]? 'unshift':'push']([m].concat([].slice.call(arguments,0)));};
+                    })(v[w]);
+                    y=e.createElement(n); y.async=!0; y.src='https://pendo-dev-static.storage.googleapis.com/agent/static/'+apiKey+'/pendo.js';
+                    z=e.getElementsByTagName(n)[0]; z.parentNode.insertBefore(y,z);
+                })(window,document,'script','pendo');
+                pendo.initialize({
+                    apiKey: apiKey,
+                    visitor: {
+                        id: config.user
+                    },
+                    account: {
+                        id: config.account
+                    }
+                });
+            })('0b9a9eed-bf72-48cc-421f-99f5ebadc51e');
+        </script>
 </body>
 </html>
