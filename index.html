@@ -1,7 +1,11 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+<link rel="stylesheet" href="https://mode.github.io/alamode/alamode.min.css">
+<script src="https://mode.github.io/alamode/alamode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.7/d3-tip.min.js"></script>
+
+	  <meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ravidorr.github.io</title>
     <meta name="description" content="">
@@ -70,7 +74,7 @@
                     <li>Unlimited bandwidth</li>
                 </ul>
 
-                <button class="button-choose pure-button">Choose</button>
+                <button class="button-choose pure-button" id="hive">Choose</button>
             </div>
         </div>
 
@@ -175,5 +179,27 @@
                 });
             })('0b9a9eed-bf72-48cc-421f-99f5ebadc51e');
         </script>
+	  
+	  script>
+alamode.hive( 
+  {
+    "html_element": "#hive",
+    "node_query": "Stations",
+    "edge_query": "Trips",
+    "groups_are_numeric": false,
+    "title": "SF Bike Share network",
+    "chart_width": 1000,
+    "chart_height": 1000,
+    "padding_for_names": 50,
+    "group_colors": {
+      "San Francisco": "#37B067",
+      "San Jose": "#894FBA",
+      "Mountain View": "#22A3C0",
+      "Palo Alto": "#EE7437",
+      "Redwood City": "#DA364A"
+    }
+  }
+)
+</script>
 </body>
 </html>
